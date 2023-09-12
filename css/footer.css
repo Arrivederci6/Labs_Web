@@ -1,0 +1,28 @@
+/* ** ----------------------Imports---------------------- ** */
+@import url(setup.css);
+/* ** ----------------------Footer---------------------- ** */
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 205px;
+    margin: 184px 0 0 0;
+    background-color: #F16353;
+}
+.limiter__footer{
+    width: 1285px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    
+}
+.footer__copyright {
+    color: #fff;
+    font-weight: 700;
+    line-height: 30px;
+}
+.twitter__link{
+    margin: 0 31px;
+}

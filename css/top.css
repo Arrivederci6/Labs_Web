@@ -4,6 +4,8 @@
 .wrapper {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .limiter {
     width: 1285px; 

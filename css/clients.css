@@ -5,13 +5,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 57px 0 0 0;
 }
 .clients__text {
     font-family: DM Serif Display;
     font-weight: 400;
     font-size: 48px;
     line-height: 67px;
-    margin: 0 0 50px 0;
+    margin: 13px 0 50px 0;
 }
 .clients__carousel {
     display: flex;
