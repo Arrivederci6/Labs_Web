@@ -1,0 +1,51 @@
+/* ** ----------------------Imports---------------------- ** */
+@import url(setup.css);
+/* ** ----------------------Clients---------------------- ** */
+.clients {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.clients__text {
+    font-family: DM Serif Display;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 67px;
+    margin: 0 0 50px 0;
+}
+.clients__carousel {
+    display: flex;
+    justify-content: space-between;
+    
+}
+.client {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 60px 50px 40px;
+    box-shadow: 3px 3px 3px #C4C4C4;
+    text-align: left;
+    margin: 0 3px;
+    max-width: 420px;
+    min-height: 360px; 
+    overflow: hidden;
+}
+
+.client__comment {
+    font-size: 16px;
+    line-height: 30px;
+    margin: 0 0 60px 0;
+    height: 120px;
+}
+
+.client__profile {
+    display: flex;
+    align-items: center;
+    height: 60px;
+}
+.client__name{
+    font-weight: 700;
+}
+.client__profile-image {
+    height: 100%;
+    margin-right: 20px;
+}
