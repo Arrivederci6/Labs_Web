@@ -6,8 +6,7 @@
     justify-content: center;
 }
 .limiter {
-    width: 1485px; 
-    /* ?Added 200 px */
+    width: 1285px; 
 }
 .envelopment{
     position: relative;
@@ -72,8 +71,9 @@
     transform: scale(1.07);
 }
 
-.top__car{
+.top__car-image{
     position: absolute;
     left: -200px;
     top: 700px;
+    /* ?Added n px to top */
 }
