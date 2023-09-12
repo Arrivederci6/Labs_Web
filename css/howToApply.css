@@ -1,0 +1,11 @@
+/* ** ----------------------Imports---------------------- ** */
+@import url(setup.css);
+/* ** ----------------------How To Apply---------------------- ** */
+.how_to_apply {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.how_to_apply-main__text {
+    width: 455px;
+}

@@ -3,9 +3,10 @@
 /* ** ----------------------About Us---------------------- ** */
 .about_us{
     display: flex;
+    justify-content: space-between;
     /* margin: 239px 0 0 0; */
 }
-.main{
+.about_us-main{
     margin: 313px 0 0 0;
 }
 .main__label {
@@ -15,10 +16,13 @@
     color: #EE4D47;
 }
 .main__text {
-    width: 470px;
     font-size: 18px;
     line-height: 40px;
-    margin: 40px 0 70px 0;
+    margin: 40px 0 0 0;
+}
+.about_us-main__text{
+    width: 470px;
+    margin-bottom: 70px;
 }
 .main__aside {
     border-left:10px solid #ED4D47;
@@ -31,5 +35,5 @@
     padding: 30px 55px;
 }
 .about_us-image{
-    margin: 239px 0 0 26px;
+    margin: 239px 0 0 0;
 }
