@@ -27,6 +27,7 @@
 }
 @media (max-width: 1100px){
     .how_to_apply{
+        margin: 50px 0 0 0;
         justify-content: center;
     }
 }
@@ -36,6 +37,9 @@
     }
 }
 @media (max-width: 880px){
+    .how_to_apply{
+        margin: 100px 0 0 0;
+    }
     .how_to_apply-image{
         width: 30%;
     }
@@ -51,7 +55,7 @@
         font-size: 14px;
     }
 }
-@media (max-width: 375px){
+@media (max-width: 405px){
     .how_to_apply-main__text{
         width: 300px;
     }
