@@ -50,3 +50,62 @@
     height: 100%;
     margin-right: 20px;
 }
+@media (max-width: 1330px){
+    .clients__carousel{
+        flex-direction: column;
+    }
+    .client{
+        max-width: 768px;
+        padding: 60px 100px 40px;
+    }
+    .client:not(:last-child){
+        margin-bottom: 30px;
+    }
+}
+@media (max-width: 825px){
+    .client{
+        max-width: 420px;
+        padding: 60px 50px 40px;
+    }
+}
+@media (max-width: 750px){
+    .clients {
+        margin: 150px 0 0 0;
+    }
+}
+@media (max-width: 475px){
+    .clients__text{
+        font-size: 40px;
+    }
+    .client{
+        max-width: 360px;
+    }
+    .client__comment{
+        font-size: 14px;
+    }
+    .client__name{
+        font-size: 14px;
+    }
+}
+@media (max-width: 390px){
+    .clients__text{
+        font-size: 35px;
+    } 
+    .client{
+        max-width: 320px;
+    }
+    .client__comment{
+        margin: 0 0 80px 0;
+    }
+}
+@media (max-width: 350px){
+    .clients__text{
+        font-size: 30px;
+    } 
+    .client{
+        max-width: 300px;
+    }
+    .client__comment{
+        margin: 0 0 100px 0;
+    }
+}
