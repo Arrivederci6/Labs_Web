@@ -13,7 +13,7 @@
 .envelopment{
     position: relative;
     overflow: hidden;
-    background-image: url('/img/Background\ Scene.jpg');
+    background-image: url('../img/Background\ Scene.jpg');
     height: 1005px;
     background-size: cover;
     background-position: center top;
