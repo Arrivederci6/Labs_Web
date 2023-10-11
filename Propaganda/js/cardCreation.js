@@ -12,7 +12,7 @@ createButton.addEventListener('click', () => {
   }
 
   const card = { cardTitle, cardPropagandaAmount };
-  
+
   let cards = JSON.parse(localStorage.getItem('cards')) || [];
 
   cards.push(card);
@@ -21,4 +21,5 @@ createButton.addEventListener('click', () => {
 
   cardTitleInput.value = '';
   cardPropagandaAmountInput.value = '';
+
 });

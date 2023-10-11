@@ -13,21 +13,34 @@ document.addEventListener("DOMContentLoaded", function() {
     const cardImg = document.createElement('img');
     const cardTitle = document.createElement('p');
     const cardPropagandaAmount = document.createElement('var');
+    const editButton = document.createElement('button');
+
 
     cardElem.className = 'card';
     cardImg.src = '../Propaganda/img/mao.jpg';
     cardImg.alt = 'mao';
     cardImg.style.width = '200px';
     cardTitle.className = 'card__title';
-    cardTitle.innerHTML = `<p>${card.cardTitle}</p>`;
+    cardTitle.innerHTML = card.cardTitle || '';
     cardPropagandaAmount.className = 'card__propaganda__amount';
-    cardPropagandaAmount.innerHTML = `<var>${card.cardPropagandaAmount}</var>`
+    cardPropagandaAmount.innerHTML = card.cardPropagandaAmount || '';
+    editButton.innerText = 'Edit';
+    editButton.className = 'edit__button button';
 
     cardElem.appendChild(cardImg);
     cardElem.appendChild(cardTitle);
     cardElem.appendChild(cardPropagandaAmount);
+    cardElem.appendChild(editButton);
 
     createdCards.appendChild(cardElem);
+
+    editButton.addEventListener('click', () => {
+      const editCardTitle = card.cardTitle;
+      const editCardAmount = card.cardPropagandaAmount;
+
+      const editUrl = `edit_page.html?title=${editCardTitle}&amount=${editCardAmount}`;
+      window.location.href = editUrl;
+    });
   });
 
   searchInput.addEventListener('input', () => {
@@ -79,4 +92,5 @@ document.addEventListener("DOMContentLoaded", function() {
     cards = [];
     localStorage.setItem('cards', JSON.stringify([]));
   });
+
 });

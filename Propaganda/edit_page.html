@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/setup.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/create_page_main.css">
+    <link rel="stylesheet" href="css/edit_page_main.css">
 </head>
 <body>
     <div class="container">
@@ -29,16 +29,16 @@
           </div>
         </header>
         <main class="create_page-main__content text-center">
-          <h1 class="main__title title">Create Propaganda</h1>
-          <form id="creation__form" class="form form-control d-flex flex-column align-items-center">
-            <label class="form__label main__text" for="title">Title</label> 
-            <input type="text" name="title" id="title__field" class="form-control my-3" placeholder="Card`s title"> 
-            <label class="form__label main__text mt-3" for="title">Propaganda influence amount</label> 
-            <input type="number" name="numberInput" id="amount__field" class="form-control my-3" placeholder="Enter card`s propaganda influence amount">
-            <input type="submit" value="Create" id="create__button" class="button">
+          <h1 class="main__title title">Edit Propaganda</h1>
+          <form id="edit__form" class="form form-control d-flex flex-column align-items-center">
+            <!-- <label class="form__label main__text" for="title">New title</label> 
+            <input type="text" name="title" id="edit-title__field" class="form-control my-3" placeholder="Card`s new title">  -->
+            <label class="form__label main__text mt-3" for="title"> New propaganda influence amount</label> 
+            <input type="number" name="numberInput" id="edit-amount__field" class="form-control my-3" placeholder="Enter card`s new propaganda influence amount">
+            <input type="submit" value="Edit" id="edit__button" class="button">
           </form>
         </main>
       </div>
-      <script src="js/cardCreation.js"></script>
+      <script src="js/editCard.js"></script>
 </body>
 </html>
