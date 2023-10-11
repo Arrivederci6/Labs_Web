@@ -46,6 +46,9 @@
 #counter__total {
     font-size: 18px;
 }
+.delete__button{
+    background-color: #d9534f;
+}
 .cards__container {
     width: 65%;
     float: right;
