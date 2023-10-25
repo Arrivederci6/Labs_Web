@@ -1,0 +1,10 @@
+.form{
+    margin: 50px 0 0 0;
+    border: none;
+}
+#edit-title__field {
+    width: 30%;
+}
+#edit-amount__field{
+    width: 30%;
+}
