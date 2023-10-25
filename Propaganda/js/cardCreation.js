@@ -3,9 +3,9 @@ const cardPropagandaAmountInput = document.getElementById('amount__field');
 const createButton = document.getElementById('create__button');
 
 createButton.addEventListener('click', () => {
-  const cardTitle = cardTitleInput.value;
+  const cardTitle = cardTitleInput.value.trim();
   const cardPropagandaAmount = cardPropagandaAmountInput.value;
-
+  
   if (!cardTitle || !cardPropagandaAmount) {
     alert("Fill in all the information");
     return;

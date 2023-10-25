@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function() {
   
         localStorage.setItem('cards', JSON.stringify(cards));
   
-        window.location.href = 'index.html';
       } else {
         alert('Card not found for update');
       }
