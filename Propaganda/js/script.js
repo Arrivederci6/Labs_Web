@@ -1,69 +1,66 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
   const searchInput = document.getElementById('input');
   const counterTotal = document.getElementById('counter__total');
-  const countButton = document.getElementById('counter__button'); 
+  const countButton = document.getElementById('counter__button');
   const sortButton = document.getElementById('sort__button');
   const deleteButton = document.getElementById('delete__button');
   const createdCards = document.getElementById('created__cards');
 
-  let cards = JSON.parse(localStorage.getItem('cards')) || [];
+  async function fetchAndDisplayPropaganda(search) {
+    try {
+      const response = await fetch(`http://localhost:3000/propaganda?search=${search}`);
+      if (response.ok) {
+        const propagandaData = await response.json();
+        displayPropaganda(propagandaData);
+      } else {
+        alert('Failed to fetch propaganda data');
+      }
+    } catch (error) {
+      console.error('HTTP ERROR: ', error);
+    }
+  }
 
-  cards.forEach(card => {
-    const cardElem = document.createElement('div');
-    const cardImg = document.createElement('img');
-    const cardTitle = document.createElement('p');
-    const cardPropagandaAmount = document.createElement('var');
-    const editButton = document.createElement('button');
+  function displayPropaganda(propagandaData) {
+    createdCards.innerHTML = '';
 
+    propagandaData.forEach(card => {
+      const cardElem = document.createElement('div');
+      const cardTitle = document.createElement('p');
+      const cardPropagandaAmount = document.createElement('var');
+      const editButton = document.createElement('button');
 
-    cardElem.className = 'card';
-    cardImg.src = '../Propaganda/img/mao.jpg';
-    cardImg.alt = 'mao';
-    cardImg.style.width = '200px';
-    cardTitle.className = 'card__title';
-    cardTitle.innerHTML = card.cardTitle || '';
-    cardPropagandaAmount.className = 'card__propaganda__amount';
-    cardPropagandaAmount.innerHTML = card.cardPropagandaAmount || '';
-    editButton.innerText = 'Edit';
-    editButton.className = 'edit__button button';
+      cardElem.className = 'card';
+      cardTitle.className = 'card__title';
+      cardTitle.textContent = card.card__title || '';
+      cardPropagandaAmount.className = 'card__propaganda__amount';
+      cardPropagandaAmount.textContent = card.card__propaganda__amount || '';
+      editButton.innerText = 'Edit';
+      editButton.className = 'edit__button button';
 
-    cardElem.appendChild(cardImg);
-    cardElem.appendChild(cardTitle);
-    cardElem.appendChild(cardPropagandaAmount);
-    cardElem.appendChild(editButton);
+      cardElem.appendChild(cardTitle);
+      cardElem.appendChild(cardPropagandaAmount);
+      cardElem.appendChild(editButton);
 
-    createdCards.appendChild(cardElem);
+      createdCards.appendChild(cardElem);
 
-    editButton.addEventListener('click', () => {
-      const editCardTitle = card.cardTitle;
-      const editCardAmount = card.cardPropagandaAmount;
+      editButton.addEventListener('click', () => {
+        const editCardTitle = card.card__title;
+        const editCardAmount = card.card__propaganda__amount;
 
-      const editUrl = `edit_page.html?title=${editCardTitle}&amount=${editCardAmount}`;
-      window.location.href = editUrl;
+        const editUrl = `edit_page.html?title=${editCardTitle}&amount=${editCardAmount}`;
+        window.location.href = editUrl;
+      });
     });
-  });
+  }
 
   searchInput.addEventListener('input', () => {
     const searchText = searchInput.value.toLowerCase();
-
-    const cards = createdCards.querySelectorAll('.card');
-
-    cards.forEach(card => {
-      const cardTitle = card.querySelector('.card__title').textContent.toLowerCase();
-      const cardPropagandaAmount = card.querySelector('.card__propaganda__amount').textContent;
-
-      if (cardTitle.includes(searchText) || cardPropagandaAmount.includes(searchText)) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    });
+    fetchAndDisplayPropaganda(searchText);
   });
 
   countButton.addEventListener('click', () => {
     let totalPropagandaAmount = 0;
-
-    const visibleCards = createdCards.querySelectorAll('.card:not([style*="display: none"])');
+    const visibleCards = createdCards.querySelectorAll('.card');
 
     visibleCards.forEach(card => {
       const cardPropagandaAmount = card.querySelector('.card__propaganda__amount').textContent;
@@ -74,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   sortButton.addEventListener('click', () => {
-    const cardList = Array.from(createdCards.querySelectorAll('.card:not([style*="display: none"])'));
+    const cardList = Array.from(createdCards.querySelectorAll('.card'));
 
     cardList.sort((a, b) => {
       const cardPropagandaAmountFirst = parseInt(a.querySelector('.card__propaganda__amount').textContent);
@@ -88,9 +85,21 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  deleteButton.addEventListener('click', () => {
-    cards = [];
-    localStorage.setItem('cards', JSON.stringify([]));
+  deleteButton.addEventListener('click', async () => {
+    try {
+      const response = await fetch('http://localhost:3000/propaganda', {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        createdCards.innerHTML = '';
+      } else {
+        alert('Failed to delete propaganda data');
+      }
+    } catch (error) {
+      console.error('HTTP ERROR: ', error);
+    }
   });
 
+  fetchAndDisplayPropaganda('');
 });
