@@ -5,23 +5,25 @@ const createButton = document.getElementById('create__button');
 createButton.addEventListener('click', async () => {
   const cardTitle = cardTitleInput.value.trim();
   const cardPropagandaAmount = cardPropagandaAmountInput.value;
-  
+
+  const card = { cardTitle, cardPropagandaAmount };
+
   if (!cardTitle || !cardPropagandaAmount) {
     alert("Fill in all the information");
     return;
   }
 
-  const card = { cardTitle, cardPropagandaAmount };
+  console.log(card);
 
   try {
     const response = await fetch('http://localhost:3000/propaganda', {
       method: 'POST',
+      body: JSON.stringify(card),
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(card),
     });
-
+    
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -30,7 +32,7 @@ createButton.addEventListener('click', async () => {
     cardTitleInput.value = '';
     cardPropagandaAmountInput.value = '';
   } catch (error) {
-    console.error('HTTP ERROR: ', error);
+    console.log('HTTP ERROR: ', error);
     alert('Failed to create card');
   }
 });

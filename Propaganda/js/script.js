@@ -1,3 +1,5 @@
+// import { getPropaganda, deletePropaganda } from "../api/routes/router.js";
+
 document.addEventListener("DOMContentLoaded", async function() {
   const searchInput = document.getElementById('input');
   const counterTotal = document.getElementById('counter__total');
@@ -5,6 +7,15 @@ document.addEventListener("DOMContentLoaded", async function() {
   const sortButton = document.getElementById('sort__button');
   const deleteButton = document.getElementById('delete__button');
   const createdCards = document.getElementById('created__cards');
+
+  // async function fetchAndDisplayPropaganda(search) {
+  //   try {
+  //     const propagandaData = await getPropaganda(search);
+  //     displayPropaganda(propagandaData);
+  //   } catch (error) {
+  //     console.error('HTTP ERROR: ', error);
+  //   }
+  // }
 
   async function fetchAndDisplayPropaganda(search) {
     try {
@@ -84,6 +95,20 @@ document.addEventListener("DOMContentLoaded", async function() {
       createdCards.appendChild(card);
     });
   });
+
+  // deleteButton.addEventListener('click', async () => {
+  //   try {
+  //     const response = await deletePropaganda();
+  //     if (response.ok) {
+  //       createdCards.innerHTML = '';
+  //     } else {
+  //       alert('Failed to delete propaganda data');
+  //     }
+  //   } catch (error) {
+  //     console.error('HTTP ERROR: ', error);
+  //   }
+  // });
+
 
   deleteButton.addEventListener('click', async () => {
     try {

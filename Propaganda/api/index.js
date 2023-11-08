@@ -4,30 +4,10 @@ const app = express()
 const port = 3000
 
 app.use(cors());
+app.options('*', cors());
 app.use(express.json())
 
 const propaganda = [];
-
-const BASE_URL = "http://localhost:3000/";
-
-const baseRequest = async (urlPath, method = "GET", body = null) => {
-  try {
-    const reqParams = {
-      method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    if (body) {
-      reqParams.body = JSON.stringify(body);
-    }
-
-    return await fetch(`${BASE_URL}${urlPath}`, reqParams);
-  } catch (error) {
-    console.error("HTTP ERROR: ", error);
-  }
-};
 
 app.get('/propaganda', (req, res) => {
   if (propaganda.length === 0) {
@@ -39,6 +19,17 @@ app.get('/propaganda', (req, res) => {
     const response = propaganda.filter(card => card.card__title.toLowerCase().includes(search) || card.card__propaganda__amount.toString().includes(search));
     res.json(response);
   }
+});
+
+app.get('/propaganda/:propagandaId', (req, res) => {
+  const id = req.params.propagandaId;
+  const propagandaItem = propaganda.find(card => card.id.toString() === id.toString());
+
+  if (!propagandaItem) {
+    return res.sendStatus(404);
+  }
+
+  res.json(propagandaItem);
 });
 
 
@@ -62,6 +53,7 @@ app.put('/propaganda/:propagandaId', (req, res) => {
 
 app.post('/propaganda', (req, res) => {
   const newCard = {
+    id: req.body.id,
     card__title: req.body.card__title,
     card__propaganda__amount: req.body.card__propaganda__amount,
   };
