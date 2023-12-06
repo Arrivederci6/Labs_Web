@@ -48,6 +48,8 @@ document.addEventListener("DOMContentLoaded", async function() {
       editButton.innerText = 'Edit';
       editButton.className = 'edit__button button';
 
+      editButton.setAttribute('data-id', card.id);
+
       cardElem.appendChild(cardTitle);
       cardElem.appendChild(cardPropagandaAmount);
       cardElem.appendChild(editButton);
@@ -55,11 +57,11 @@ document.addEventListener("DOMContentLoaded", async function() {
       createdCards.appendChild(cardElem);
 
       editButton.addEventListener('click', () => {
+        const editCardId = editButton.getAttribute('data-id');
         const editCardTitle = card.card__title;
         const editCardAmount = card.card__propaganda__amount;
 
-        const editUrl = `edit_page.html?title=${editCardTitle}&amount=${editCardAmount}`;
-        window.location.href = editUrl;
+        const editUrl = `edit_page.html?id=${editCardId}&title=${editCardTitle}&amount=${editCardAmount}`;        window.location.href = editUrl;
       });
     });
   }

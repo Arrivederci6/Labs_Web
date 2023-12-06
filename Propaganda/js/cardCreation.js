@@ -6,7 +6,7 @@ createButton.addEventListener('click', async () => {
   const cardTitle = cardTitleInput.value.trim();
   const cardPropagandaAmount = cardPropagandaAmountInput.value;
 
-  const card = { cardTitle, cardPropagandaAmount };
+  const card = { card__title: cardTitle, card__propaganda__amount: cardPropagandaAmount };
 
   if (!cardTitle || !cardPropagandaAmount) {
     alert("Fill in all the information");

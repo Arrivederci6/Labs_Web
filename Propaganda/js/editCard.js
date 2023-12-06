@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const editButton = document.getElementById('edit__button');
 
   const urlParams = new URLSearchParams(window.location.search);
+  const editCardId = urlParams.get('id');
   const editCardTitle = urlParams.get('title');
   const editCardAmount = urlParams.get('amount');
 
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     try {
-      const response = await fetch(`http://localhost:3000/propaganda/${editCardTitle}`, {
+      const response = await fetch(`http://localhost:3000/propaganda/${editCardId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

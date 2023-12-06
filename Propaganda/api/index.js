@@ -51,17 +51,22 @@ app.put('/propaganda/:propagandaId', (req, res) => {
   res.sendStatus(200);
 })
 
+let counter = 0
 app.post('/propaganda', (req, res) => {
+  const id = counter++;
+
   const newCard = {
-    id: req.body.id,
+    id,
     card__title: req.body.card__title,
     card__propaganda__amount: req.body.card__propaganda__amount,
   };
 
   propaganda.push(newCard);
 
-  res.sendStatus(201);
+  res.status(201).json(propaganda);
 });
+
+
 
 
 app.delete('/propaganda', (req, res) => {
