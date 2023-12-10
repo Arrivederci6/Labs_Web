@@ -2,24 +2,37 @@ const cardTitleInput = document.getElementById('title__field');
 const cardPropagandaAmountInput = document.getElementById('amount__field');
 const createButton = document.getElementById('create__button');
 
-createButton.addEventListener('click', () => {
+createButton.addEventListener('click', async () => {
   const cardTitle = cardTitleInput.value.trim();
   const cardPropagandaAmount = cardPropagandaAmountInput.value;
-  
+
+  const card = { card__title: cardTitle, card__propaganda__amount: cardPropagandaAmount };
+
   if (!cardTitle || !cardPropagandaAmount) {
     alert("Fill in all the information");
     return;
   }
 
-  const card = { cardTitle, cardPropagandaAmount };
+  console.log(card);
 
-  let cards = JSON.parse(localStorage.getItem('cards')) || [];
+  try {
+    const response = await fetch('http://localhost:3000/propaganda', {
+      method: 'POST',
+      body: JSON.stringify(card),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
 
-  cards.push(card);
-
-  localStorage.setItem('cards', JSON.stringify(cards));
-
-  cardTitleInput.value = '';
-  cardPropagandaAmountInput.value = '';
-
+    alert('Card created successfully');
+    cardTitleInput.value = '';
+    cardPropagandaAmountInput.value = '';
+  } catch (error) {
+    console.log('HTTP ERROR: ', error);
+    alert('Failed to create card');
+  }
 });
