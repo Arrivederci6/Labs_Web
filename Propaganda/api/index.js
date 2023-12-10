@@ -67,8 +67,6 @@ app.post('/propaganda', (req, res) => {
 });
 
 
-
-
 app.delete('/propaganda', (req, res) => {
   propaganda.splice(0,propaganda.length);
 
