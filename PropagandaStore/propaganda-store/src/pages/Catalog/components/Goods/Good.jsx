@@ -2,11 +2,7 @@ import React from "react";
 import './Good.css';
 import PrimaryButton from "../../../../components/PrimaryButton";
 
-const clickHandler = () =>{
-    alert("view more button has been clicked")
-} 
-
-const Good = ({ image, title, price }) => {
+const Good = ({ image, title, price, hasSmoking }) => {
     return (
         <div className="wrapper">
             <img src={image} alt="" className="image" />
@@ -19,7 +15,7 @@ const Good = ({ image, title, price }) => {
                 <h4 className="price__section-title">Price:</h4>
                 <var className="price__section-price">$ {price}</var>
             </div>
-            <PrimaryButton text="View more" onClick={clickHandler}/>
+            <PrimaryButton text="View more"/>
         </div>
     )
 }

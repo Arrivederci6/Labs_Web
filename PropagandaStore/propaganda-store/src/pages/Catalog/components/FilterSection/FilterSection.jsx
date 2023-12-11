@@ -3,11 +3,11 @@ import './FilterSection.css';
 import Dropdown from "../../../../components/Dropdown";
 import SecondaryButton from "../../../../components/SecondaryButton";
 import SearchBar from "../../../../components/SearchBar";
+import Goods from "../Goods/Goods";
 
 const FilterSection = () => {
   const [selectedValue1, setSelectedValue1] = useState("");
   const [selectedValue2, setSelectedValue2] = useState("");
-  const [selectedValue3, setSelectedValue3] = useState("");
 
   const handleSelectChange1 = (event) => {
     setSelectedValue1(event.target.value);
@@ -15,10 +15,6 @@ const FilterSection = () => {
 
   const handleSelectChange2 = (event) => {
     setSelectedValue2(event.target.value);
-  };
-
-  const handleSelectChange3 = (event) => {
-    setSelectedValue3(event.target.value);
   };
 
   return (
@@ -29,12 +25,10 @@ const FilterSection = () => {
         value={selectedValue1}
         onChange={handleSelectChange1}
         controlId="yourSelectControl1"
-        label="Choose an option"
+        label="Has Smoking"
         selectItems={[
-          { value: "option1", title: "Option 1" },
-          { value: "option2", title: "Option 2" },
-          { value: "option3", title: "Option 3" },
-          { value: "option4", title: "Option 4" },
+          { value: "option1", title: "Yes" },
+          { value: "option2", title: "No" }
         ]}
         required={true}
       />
@@ -42,25 +36,10 @@ const FilterSection = () => {
         value={selectedValue2}
         onChange={handleSelectChange2}
         controlId="yourSelectControl2"
-        label="Choose an option"
+        label="Price"
         selectItems={[
-          { value: "option1", title: "Option 1" },
-          { value: "option2", title: "Option 2" },
-          { value: "option3", title: "Option 3" },
-          { value: "option4", title: "Option 4" },
-        ]}
-        required={true}
-      />
-      <Dropdown
-        value={selectedValue3}
-        onChange={handleSelectChange3}
-        controlId="yourSelectControl3"
-        label="Choose an option"
-        selectItems={[
-          { value: "option1", title: "Option 1" },
-          { value: "option2", title: "Option 2" },
-          { value: "option3", title: "Option 3" },
-          { value: "option4", title: "Option 4" },
+          { value: "option1", title: "> 500" },
+          { value: "option2", title: "< 500" }
         ]}
         required={true}
       />
@@ -68,6 +47,7 @@ const FilterSection = () => {
       
         <SearchBar/>
       <SecondaryButton text="Apply"/>
+
     </div>
   );
 };
