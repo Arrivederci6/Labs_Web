@@ -1,12 +1,17 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import Header from "../Home/components/Header/Header";
-import { CartContext } from "../../store/CartContext";
-import { useContext } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { changeQuantity, removeFromCart } from "../../store/cartSlice";
 
 const Cart = () => {
-    const { cart, changeQuantity } = useContext(CartContext);
+    const cart = useSelector((state) => state.cart.cartItems);
+    const dispatch = useDispatch();
     const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+
+    const handleQuantityChange = (item, quantity) => {
+        dispatch(changeQuantity({ item, quantity }));
+    };
 
     return (
         <div>
@@ -17,9 +22,10 @@ const Cart = () => {
                 <div key={index} style={{ display: 'flex', justifyContent: 'space-around', border:'1px solid #000', padding: '20px'}}>
                     <h2 style={{fontSize:'24px', fontWeight:"700"}} className="text">{item.title}</h2>
                     <div style={{display:'flex'}}>
-                        <button onClick={() => changeQuantity(item, item.quantity - 1)} disabled={item.quantity === 0} style={{border:'2px solid #000', padding:'10px 20px', borderRadius:'5px', backgroundColor:'#fff'}}>-</button>
+                        <button onClick={() => handleQuantityChange(item, item.quantity - 1)} disabled={item.quantity === 0} style={{border:'2px solid #000', padding:'10px 20px', borderRadius:'5px', backgroundColor:'#fff'}}>-</button>
                         <p style={{fontWeight:"500", fontSize:'24px', margin:'0 30px'}}>{item.quantity}</p>
-                        <button onClick={() => changeQuantity(item, item.quantity + 1)} style={{border:'2px solid #000', padding:'10px 20px', borderRadius:'5px', backgroundColor:'#fff'}}>+</button>
+                        <button onClick={() => handleQuantityChange(item, item.quantity + 1)} style={{border:'2px solid #000', padding:'10px 20px', borderRadius:'5px', backgroundColor:'#fff'}}>+</button>
+                        <button onClick={() => dispatch(removeFromCart(item))} className="button">Delete</button>
                     </div>
                     <p style={{fontWeight:"500", fontSize:'24px'}}>${item.price * item.quantity}</p>
                 </div>
@@ -30,5 +36,6 @@ const Cart = () => {
         </div>
     );
 };
+
 
 export default Cart;

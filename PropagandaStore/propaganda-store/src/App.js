@@ -4,11 +4,12 @@ import Home from './pages/Home/Home';
 import Catalog from './pages/Catalog/Catalog';
 import GoodDetails from './pages/Catalog/components/Goods/GoodDetails';
 import Cart from './pages/Cart/Cart'
-import { CartProvider } from './store/CartProvider';
+import store from './store/store';
+import { Provider } from 'react-redux';
 
 function App() {
   return (
-    <CartProvider>
+    <Provider store={ store }>
       <Router>
             <Routes>
               <Route path='/' exact Component={Home}/>
@@ -17,7 +18,7 @@ function App() {
               <Route path='/cart' Component={Cart} />
             </Routes>
           </Router>
-    </CartProvider>
+    </Provider>
     
   );
 }

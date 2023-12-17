@@ -1,15 +1,16 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './GoodDetail.css'
-import { CartContext } from '../../../../store/CartContext';
-import PrimaryButton from '../../../../components/PrimaryButton';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../../../store/cartSlice'
 
 const GoodDetails = () => {
     const { id } = useParams();
     const [good, setGood] = useState(null);
-    const { addToCart } = useContext(CartContext);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchGood = async () => {
@@ -19,6 +20,11 @@ const GoodDetails = () => {
 
         fetchGood();
     }, [id]);
+
+    const addToCartHandler = () =>{
+        dispatch(addToCart(good));
+        navigate("/catalog");
+    }
 
     if (!good) {
         return <div>Loading...</div>;
@@ -31,7 +37,7 @@ const GoodDetails = () => {
             <p className="good-details__price">Price: ${good.price}</p>
             <p className="good-details__smoking">Has Smoking: {good.hasSmoking ? 'Yes' : 'No'}</p>
             <Link to="/catalog" className="button" style={{margin: '50px'}}>Back to catalog</Link>
-            <button className='button' onClick={() => addToCart(good)}>Add to Cart</button>
+            <button className='button' onClick={addToCartHandler}>Add to Cart</button>
 </div>
     );
 }
