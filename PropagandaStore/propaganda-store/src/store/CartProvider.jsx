@@ -1,36 +1,21 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import { CartContext } from './CartContext';
+import { addToCart, changeQuantity } from './actions';
+import { cartReducer } from './cartReducer';
 
 export const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState([]);
+    const [cart, dispatch] = useReducer(cartReducer, []);
 
-    const addToCart = (item) => {
-        setCart(prevCart => {
-            const existingItemIndex = prevCart.findIndex(cartItem => cartItem.id === item.id);
-            if (existingItemIndex !== -1) {
-                const updatedCart = [...prevCart];
-                updatedCart[existingItemIndex].quantity += 1;
-                return updatedCart;
-            } else {
-                return [...prevCart, { ...item, quantity: 1 }];
-            }
-        });
+    const handleAddToCart = (item) => {
+        dispatch(addToCart(item));
     };
     
-    const changeQuantity = (item, quantity) => {
-        setCart(prevCart => {
-            const itemIndex = prevCart.findIndex(cartItem => cartItem.id === item.id);
-            if (itemIndex !== -1) {
-                const updatedCart = [...prevCart];
-                updatedCart[itemIndex].quantity = quantity;
-                return updatedCart;
-            }
-            return prevCart;
-        });
+    const handleChangeQuantity = (item, quantity) => {
+        dispatch(changeQuantity(item, quantity));
     };
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, changeQuantity }}>
+        <CartContext.Provider value={{ cart, addToCart: handleAddToCart, changeQuantity: handleChangeQuantity }}>
             {children}
         </CartContext.Provider>
     );
