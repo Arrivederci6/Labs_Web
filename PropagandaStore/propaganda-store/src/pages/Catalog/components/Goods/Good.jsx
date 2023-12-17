@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Good = ({ id, image, title, price, hasSmoking }) => {
     return (
         <div className="wrapper">
-            <img src={image} alt="" className="image" />
+        <img src={`http://localhost:5500${image}`} alt={title} className="good-details__image" />
             <h3 className="good__title">{title}</h3>
             <p className="good__text">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet labore, optio

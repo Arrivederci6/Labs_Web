@@ -1,11 +1,25 @@
 import { useParams } from 'react-router-dom';
-import { goodsData } from '../Goods/Goods'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './GoodDetail.css'
 
-const GoodDetails = ({ goodsData }) => {
+const GoodDetails = () => {
     const { id } = useParams();
-    const good = goodsData.find(good => good.id === Number(id));
+    const [good, setGood] = useState(null);
+
+    useEffect(() => {
+        const fetchGood = async () => {
+            const response = await axios.get(`http://localhost:5500/goods/${id}`);
+            setGood(response.data);
+        };
+
+        fetchGood();
+    }, [id]);
+
+    if (!good) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="good-details">
@@ -15,7 +29,6 @@ const GoodDetails = ({ goodsData }) => {
             <p className="good-details__smoking">Has Smoking: {good.hasSmoking ? 'Yes' : 'No'}</p>
             <Link to="/catalog" className="button">Back to catalog</Link>
         </div>
-        
     );
 }
 
