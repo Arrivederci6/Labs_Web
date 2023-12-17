@@ -3,17 +3,22 @@ import { BrowserRouter as Router, Route, Routes, useParams } from 'react-router-
 import Home from './pages/Home/Home';
 import Catalog from './pages/Catalog/Catalog';
 import GoodDetails from './pages/Catalog/components/Goods/GoodDetails';
-import { goodsData } from './pages/Catalog/components/Goods/Goods';
+import Cart from './pages/Cart/Cart'
+import { CartProvider } from './store/CartProvider';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path='/' exact Component={Home}/>
-        <Route path='/catalog' Component={Catalog} />
-        <Route path='/catalog/:id' element={<GoodDetails id={useParams().id} />} />
-      </Routes>
-    </Router>
+    <CartProvider>
+      <Router>
+            <Routes>
+              <Route path='/' exact Component={Home}/>
+              <Route path='/catalog' Component={Catalog} />
+              <Route path='/catalog/:id' element={<GoodDetails id={useParams().id} />} />
+              <Route path='/cart' Component={Cart} />
+            </Routes>
+          </Router>
+    </CartProvider>
+    
   );
 }
 

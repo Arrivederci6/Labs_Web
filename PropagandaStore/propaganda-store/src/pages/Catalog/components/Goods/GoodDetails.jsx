@@ -1,12 +1,15 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './GoodDetail.css'
+import { CartContext } from '../../../../store/CartContext';
+import PrimaryButton from '../../../../components/PrimaryButton';
 
 const GoodDetails = () => {
     const { id } = useParams();
     const [good, setGood] = useState(null);
+    const { addToCart } = useContext(CartContext);
 
     useEffect(() => {
         const fetchGood = async () => {
@@ -27,8 +30,9 @@ const GoodDetails = () => {
             <img src={good.image} alt={good.title} className="good-details__image" />
             <p className="good-details__price">Price: ${good.price}</p>
             <p className="good-details__smoking">Has Smoking: {good.hasSmoking ? 'Yes' : 'No'}</p>
-            <Link to="/catalog" className="button">Back to catalog</Link>
-        </div>
+            <Link to="/catalog" className="button" style={{margin: '50px'}}>Back to catalog</Link>
+            <button className='button' onClick={() => addToCart(good)}>Add to Cart</button>
+</div>
     );
 }
 
