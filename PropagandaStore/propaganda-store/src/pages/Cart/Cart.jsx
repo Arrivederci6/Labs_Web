@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import Header from "../Home/components/Header/Header";
-import Footer from "../Home/components/Footer/Footer";
 import { CartContext } from "../../store/CartContext";
 import { useContext } from "react";
 
@@ -18,7 +17,7 @@ const Cart = () => {
                 <div key={index} style={{ display: 'flex', justifyContent: 'space-around', border:'1px solid #000', padding: '20px'}}>
                     <h2 style={{fontSize:'24px', fontWeight:"700"}} className="text">{item.title}</h2>
                     <div style={{display:'flex'}}>
-                        <button onClick={() => changeQuantity(item, item.quantity - 1)} style={{border:'2px solid #000', padding:'10px 20px', borderRadius:'5px', backgroundColor:'#fff'}}>-</button>
+                        <button onClick={() => changeQuantity(item, item.quantity - 1)} disabled={item.quantity === 0} style={{border:'2px solid #000', padding:'10px 20px', borderRadius:'5px', backgroundColor:'#fff'}}>-</button>
                         <p style={{fontWeight:"500", fontSize:'24px', margin:'0 30px'}}>{item.quantity}</p>
                         <button onClick={() => changeQuantity(item, item.quantity + 1)} style={{border:'2px solid #000', padding:'10px 20px', borderRadius:'5px', backgroundColor:'#fff'}}>+</button>
                     </div>

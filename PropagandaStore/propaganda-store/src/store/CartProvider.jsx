@@ -11,8 +11,11 @@ export const CartProvider = ({ children }) => {
     };
     
     const handleChangeQuantity = (item, quantity) => {
-        dispatch(changeQuantity(item, quantity));
+        if (quantity >= 0) {
+            dispatch(changeQuantity(item, quantity));
+        }
     };
+    
 
     return (
         <CartContext.Provider value={{ cart, addToCart: handleAddToCart, changeQuantity: handleChangeQuantity }}>
